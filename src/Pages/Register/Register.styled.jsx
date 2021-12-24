@@ -9,8 +9,9 @@ export const StyledCointanerInput = styled.div`
 
   &::after {
     content: ${({ isValid }) => (isValid ? `url(${isOk})` : `url(${isNotOk})`)};
+    width: 1rem;
     position: absolute;
-    top: 4.5rem;
+    top: 4.1rem;
     right: 2rem;
   }
 `;
