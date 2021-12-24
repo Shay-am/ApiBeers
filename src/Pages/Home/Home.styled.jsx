@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Logo } from '../../Assets';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -13,10 +12,8 @@ export const StyledHeading = styled.header`
   display: flex;
   justify-content: center;
   font-size: 1.6rem;
+  margin-top: 2rem;
   width: 100%;
-  text-align: center;
-  height: 6rem;
-  margin-top: 7rem;
 `;
 export const MainWrapper = styled.main`
   display: flex;
@@ -29,12 +26,12 @@ export const MainWrapper = styled.main`
 export const StyledDescription = styled.div`
   display: flex;
   width: 100vw;
-  margin-top: 5rem;
+  margin: 0 auto;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 `;
-export const StyledLogo = styled(Logo)`
-  margin-top: 4rem;
-  /* align-items: stretch; */
+
+export const StyledDescriptionError = styled.span`
+  font-size: 3rem;
+  color: red;
 `;

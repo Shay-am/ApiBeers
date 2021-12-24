@@ -1,25 +1,43 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import logoStar from '../../Assets/star.png';
-import { StyledHeading, StyledDescription, StyledImage, Image } from './Card.styled';
-import { Description, Heading } from '../../Components';
+import {
+  StyledHeading,
+  StyledDescription,
+  StyledImage,
+  Image,
+  StyledStarWrapper,
+  StyledStar
+} from './Card.styled';
+import { Description, HeadingH3 } from '../../Components';
 
-import { CardWrapper, StyledStar } from './Card.styled';
+import { CardWrapper } from './Card.styled';
 
-export const Card = ({ name, image_url, tagline, food_pairing }) => {
+export const Card = ({ name, image_url, tagline, ingredients }) => {
+  const keysIngredients = Object.keys(ingredients).join(' ');
+
   return (
     <CardWrapper>
-      <StyledStar src={logoStar} alt="image star" />
+      <StyledStarWrapper>
+        <StyledStar src={logoStar} alt="image star" />
+      </StyledStarWrapper>
       <StyledHeading>
-        <Heading small>{name}</Heading>
+        <HeadingH3>{name}</HeadingH3>
       </StyledHeading>
       <StyledDescription>
         <Description>{tagline}</Description>
-        <Description>{food_pairing[0]}</Description>
+        <Description>składniki: {keysIngredients}</Description>
       </StyledDescription>
       <StyledImage>
         <Image src={image_url} alt="cos" />
       </StyledImage>
     </CardWrapper>
   );
+};
+
+Card.propTypes = {
+  name: PropTypes.string.isRequired,
+  image_url: PropTypes.string.isRequired,
+  tagline: PropTypes.string.isRequired,
+  ingredients: PropTypes.object.isRequired
 };

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Input = styled.input`
   font-size: ${({ theme }) => theme.size.m};
-  width: calc(36rem);
+  width: calc(36rem - 1vmin);
   height: 5rem;
   color: ${({ theme }) => theme.color.text_blue};
   font-weight: ${({ theme }) => theme.size.regular};

@@ -4,25 +4,24 @@ import axios from 'axios';
 const API_URL = 'https://api.punkapi.com/v2/beers';
 
 export const useGetBeersApi = () => {
-  const [data, setData] = useState({});
+  const [beers, setBeers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const getBeers = async () => {
+    setLoading(true);
+    try {
+      const data = await axios.get(API_URL);
+      setBeers(data?.data);
+    } catch (error) {
+      setError(true);
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data: response } = await axios.get(API_URL);
-        setData(response);
-      } catch (error) {
-        console.error(error);
-      }
-      setLoading(false);
-    };
-
-    fetchData();
+    getBeers();
   }, []);
 
-  return {
-    data,
-    loading
-  };
+  return { beers, loading, error };
 };
