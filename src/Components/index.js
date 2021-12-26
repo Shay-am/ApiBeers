@@ -5,9 +5,9 @@ import { Input } from './Atoms/Input/Input';
 import { Form } from './Molekules/Form/Form';
 import { Pagination } from './Molekules/Pagination/Pagination';
 import { InputWithLabel } from './Molekules/InputWithLabel/InputWithLabel';
-import { Card } from './Organismus/Card';
+import { Card } from './Organismus/Card/Card';
+import { Nav } from './Organismus/Nav/Nav';
 import { CardCointaner } from './Templates/CardCointainer/CardCointaner';
-
 import { Registration } from './Templates/Registration/Registration';
 
 export {
@@ -21,5 +21,6 @@ export {
   Pagination,
   InputWithLabel,
   CardCointaner,
-  Registration
+  Registration,
+  Nav
 };

@@ -1,14 +1,18 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { StyledDescription } from './Login.styled';
 import { Button, Description, Registration, Form, InputWithLabel } from '../../Components';
 
+import { useAuthContext } from '../../Context/authProvider';
+
 export const Login = () => {
+  const { LogIn } = useAuthContext();
   const [contentInputs, setContentInput] = useState({
     login: '',
     password: ''
   });
+
+  const { login, password } = contentInputs;
 
   const handleChange = (e) => {
     setContentInput({ ...contentInputs, [e.target.name]: e.target.value });
@@ -16,7 +20,7 @@ export const Login = () => {
 
   return (
     <Registration name="Zaloguj Się">
-      <Form>
+      <Form onSubmit={(e) => LogIn(e, login, password)}>
         <InputWithLabel
           labelId="login-id"
           labelTitle="Login"
@@ -33,7 +37,7 @@ export const Login = () => {
           onChange={handleChange}
           autocomplete="on"
         />
-        <Button>Zaloguj Się</Button>
+        <Button type="onsubmit">Zaloguj Się</Button>
         <StyledDescription>
           <Description>Nie masz jeszcze konta ? </Description>
           <Description bold as={Link} to={'/register'}>

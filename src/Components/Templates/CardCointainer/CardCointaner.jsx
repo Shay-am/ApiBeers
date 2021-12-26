@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Wrapper } from './CardCointaner..styled';
-import { Card } from '../../Organismus/Card';
+import { Card } from '../../../Components';
 
 export const CardCointaner = ({ beers, loading }) => {
   return (
@@ -10,8 +10,8 @@ export const CardCointaner = ({ beers, loading }) => {
 
       {!loading && (
         <>
-          {beers?.map((beer) => {
-            return <Card key={beer.id} {...beer} />;
+          {beers?.map((beer, index) => {
+            return <Card key={beer.id || index} {...beer} />;
           })}
         </>
       )}
@@ -20,6 +20,6 @@ export const CardCointaner = ({ beers, loading }) => {
 };
 
 CardCointaner.propTypes = {
-  beers: PropTypes.array.isRequired,
+  beers: PropTypes.any.isRequired,
   loading: PropTypes.bool.isRequired
 };

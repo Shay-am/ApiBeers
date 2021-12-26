@@ -16,7 +16,7 @@ export const Home = () => {
   const [beersPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const currentBeers = getCurentsBeers(beers, currentPage, beersPerPage);
+  const currentBeers = getCurentsBeers(beers, currentPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 

@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../Context/authProvider';
 
 import { Button, Registration, Form, InputWithLabel, Description } from '../../Components';
 import { StyledCointanerInput, StyledDescriptionCointaner } from './Register.styled';
 
 export const Register = () => {
+  const { signUp } = useAuthContext();
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
 
@@ -14,6 +16,8 @@ export const Register = () => {
     email: '',
     password: ''
   });
+
+  const { login, email, password } = contentInputs;
 
   const checkEmail = (params) => {
     if (!params.email) {
@@ -35,12 +39,6 @@ export const Register = () => {
 
   const handleChange = (e) => {
     setContentInput({ ...contentInputs, [e.target.name]: e.target.value });
-
-    if (contentInputs.password.length < 7) {
-      setIsValidPassword(false);
-    } else {
-      setIsValidPassword(true);
-    }
   };
 
   useEffect(() => {
@@ -50,7 +48,7 @@ export const Register = () => {
 
   return (
     <Registration name="Rejestracja">
-      <Form>
+      <Form onSubmit={(e) => signUp(e, login, email, password)}>
         <InputWithLabel
           labelId="loginId"
           labelTitle="Login"
@@ -81,13 +79,13 @@ export const Register = () => {
             placeholder="password"
             value={contentInputs.password || ''}
             onChange={handleChange}
-            autoComplete
+            autoComplete="on"
           />
         </StyledCointanerInput>
         <Button>Zarejestruj się</Button>
         <StyledDescriptionCointaner>
           <Description>Masz już konto? </Description>
-          <Description bold as={Link} to={'/login'}>
+          <Description bold="true" as={Link} to={'/login'}>
             Zaloguj Się
           </Description>
         </StyledDescriptionCointaner>

@@ -28,7 +28,13 @@ export const StyledStarWrapper = styled.div`
   margin: 0.3rem 0.3rem 0.5rem 0;
 `;
 
-export const StyledStar = styled.img``;
+export const StyledStar = styled.img`
+  cursor: pointer;
+
+  &:hover {
+    padding: 0.1rem;
+  }
+`;
 
 export const StyledHeading = styled.header`
   width: 100%;
@@ -51,4 +57,5 @@ export const StyledImage = styled.div`
 export const Image = styled.img`
   width: 100%;
   height: 100%;
+  z-index: 10;
 `;
