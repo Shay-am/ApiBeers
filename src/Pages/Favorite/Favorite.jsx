@@ -2,29 +2,21 @@
 import React, { useEffect, useState } from 'react';
 import { Logo } from '../../Assets';
 import { CardCointaner, Description, Heading } from '../../Components';
-import { useAuthContext } from '../../Context/authProvider';
+import { getBeersFromDataBase } from '../../Services/useGetFavoritesBeer';
 import { MainWrapper, StyledHeading, Wrapper } from '../Home/Home.styled';
 
 export const Favorite = () => {
-  const { getBeersFromDataBase } = useAuthContext();
-
-  // const { favoriteBeers } = useAuthContext();
-  const [favoriteBeers, setData] = useState([]);
-
-  useEffect(() => {
-    setData(getBeersFromDataBase());
-  }, []);
-
+  const { beers, loading, error } = getBeersFromDataBase();
   return (
     <Wrapper>
       <StyledHeading>
         <Heading>My Favorites Beers</Heading>
       </StyledHeading>
       <MainWrapper>
-        {!favoriteBeers && favoriteBeers.length >= 1 ? (
+        {error ? (
           <Description>Nie ma ulubionych</Description>
         ) : (
-          <CardCointaner beers={favoriteBeers} loading={false} />
+          <CardCointaner beers={beers} loading={loading} />
         )}
       </MainWrapper>
       <Logo />

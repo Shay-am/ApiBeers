@@ -6,7 +6,7 @@ export const CardWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   height: 33rem;
-  width: 25%;
+  width: 27%;
   border: 1px solid ${({ theme }) => theme.color.border_light_blue};
   border-radius: 0.5rem;
   margin: 1rem;
@@ -56,6 +56,6 @@ export const StyledImage = styled.div`
 `;
 export const Image = styled.img`
   width: 100%;
-  height: 100%;
+  height: 90%;
   z-index: 10;
 `;

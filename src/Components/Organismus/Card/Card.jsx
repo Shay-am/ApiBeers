@@ -19,7 +19,7 @@ export const Card = ({ name, image_url, tagline, ingredients }) => {
   const { addBeer } = useAuthContext();
   const keysIngredients = Object.keys(ingredients).join(' ');
 
-  const obj = {
+  const saveObjInDataBase = {
     name: name,
     image_url: image_url,
     tagline: tagline,
@@ -29,7 +29,7 @@ export const Card = ({ name, image_url, tagline, ingredients }) => {
   return (
     <CardWrapper>
       <StyledStarWrapper>
-        <StyledStar src={logoStar} alt="image star" onClick={() => addBeer(obj)} />
+        <StyledStar src={logoStar} alt="image star" onClick={() => addBeer(saveObjInDataBase)} />
       </StyledStarWrapper>
       <StyledHeading>
         <HeadingH3>{name}</HeadingH3>

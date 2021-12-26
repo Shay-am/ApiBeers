@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-
 import PropTypes from 'prop-types';
+
 import axios from 'axios';
 
 const URL = 'http://localhost:2000';
@@ -11,11 +11,6 @@ export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [activeTokenUser, setActiveUser] = useState();
-  const [favoriteBeers, setFavoriteBeers] = useState([]);
-
-  const addFavoritBeers = (data) => {
-    setFavoriteBeers((prevState) => [...prevState, { ...data }]);
-  };
 
   const addBeer = async (data) => {
     try {
@@ -33,20 +28,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const getBeersFromDataBase = async () => {
-    try {
-      const data = await axios.get(`${URL}/getBeers`, {
-        headers: {
-          ['authorization']: `Bearer ${activeTokenUser}`
-        }
-      });
-
-      return data?.data.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const signUp = async (e, nameUser, emailUser, passwordUser) => {
     e.preventDefault();
     const data = {
@@ -56,16 +37,13 @@ export const AuthProvider = ({ children }) => {
     };
 
     try {
-      const newUser = await axios.post('http://localhost:2000/register', data, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+      const newUser = await axios.post(`${URL}/register`, data);
+
       if (newUser) {
         console.log(newUser);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   };
 
@@ -76,22 +54,19 @@ export const AuthProvider = ({ children }) => {
       password: passwordUser
     };
 
-    const user = await axios.post('http://localhost:2000/login', data);
+    const user = await axios.post(`${URL}/login`, data);
     if (user) {
       setActiveUser(user.data.token);
     }
   };
 
-  useEffect(() => {}, [favoriteBeers]);
+  useEffect(() => {}, []);
 
   const store = {
     activeTokenUser,
     signUp,
     LogIn,
-    favoriteBeers,
-    addFavoritBeers,
-    addBeer,
-    getBeersFromDataBase
+    addBeer
   };
 
   return (

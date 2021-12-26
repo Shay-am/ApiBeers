@@ -8,7 +8,12 @@ export const Wrapper = styled.div`
 
   padding: 1rem;
   margin: 1rem;
-  @media (max-width: 870px) {
+  @media (max-width: 1245px) {
     justify-content: center;
+    width: 75%;
+  }
+  @media (max-width: 960px) {
+    justify-content: center;
+    width: 75%;
   }
 `;
