@@ -17,9 +17,9 @@ export const AuthProvider = ({ children }) => {
     setFavoriteBeers((prevState) => [...prevState, { ...data }]);
   };
 
-  const addToDataBase = async (data) => {
+  const addBeer = async (data) => {
     try {
-      const response = await axios.post(`${URL}/addProduct`, data, {
+      const response = await axios.post(`${URL}/addBeer`, data, {
         headers: {
           ['authorization']: `Bearer ${activeTokenUser}`
         }
@@ -90,7 +90,7 @@ export const AuthProvider = ({ children }) => {
     LogIn,
     favoriteBeers,
     addFavoritBeers,
-    addToDataBase,
+    addBeer,
     getBeersFromDataBase
   };
 
