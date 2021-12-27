@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Wrapper } from './CardCointaner..styled';
 import { Card } from '../../../Components';
 
-export const CardCointaner = ({ beers, loading }) => {
+export const CardCointaner = ({ beers, loading, sendEmail }) => {
   return (
     <Wrapper>
       {loading && <div>loading...</div>}
@@ -11,7 +11,7 @@ export const CardCointaner = ({ beers, loading }) => {
       {!loading && (
         <>
           {beers?.map((beer, index) => {
-            return <Card key={beer.id || index} {...beer} />;
+            return <Card key={beer.id || index} {...beer} index={index} sendEmail={sendEmail} />;
           })}
         </>
       )}
@@ -21,5 +21,6 @@ export const CardCointaner = ({ beers, loading }) => {
 
 CardCointaner.propTypes = {
   beers: PropTypes.any.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  sendEmail: PropTypes.func
 };

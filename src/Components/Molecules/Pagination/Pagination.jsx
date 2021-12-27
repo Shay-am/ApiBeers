@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Description } from '../../../Components';
+import { Description } from '../..';
 import { StyledPagination } from './Pagination.styled';
 
 export const Pagination = ({ beersPerPage, totalBeers, paginate }) => {

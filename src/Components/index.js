@@ -2,11 +2,11 @@ import { Button } from './Atoms/Button/Button';
 import { Description } from './Atoms/Description/Description';
 import { Heading, HeadingH3 } from './Atoms/Heading/Heading';
 import { Input } from './Atoms/Input/Input';
-import { Form } from './Molekules/Form/Form';
-import { Pagination } from './Molekules/Pagination/Pagination';
-import { InputWithLabel } from './Molekules/InputWithLabel/InputWithLabel';
-import { Card } from './Organismus/Card/Card';
-import { Nav } from './Organismus/Nav/Nav';
+import { Form } from './Molecules/Form/Form';
+import { Pagination } from './Molecules/Pagination/Pagination';
+import { InputWithLabel } from './Molecules/InputWithLabel/InputWithLabel';
+import { Card } from './Organisms/Card/Card';
+import { Nav } from './Organisms/Nav/Nav';
 import { CardCointaner } from './Templates/CardCointainer/CardCointaner';
 import { Registration } from './Templates/Registration/Registration';
 

@@ -20,27 +20,30 @@ export const Login = () => {
 
   return (
     <Registration name="Zaloguj Się">
-      <Form onSubmit={(e) => LogIn(e, login, password)}>
+      <Form onSubmit={(e) => LogIn(e, login, password)} autoComplete="on">
         <InputWithLabel
           labelId="login-id"
           labelTitle="Login"
           name="login"
           placeholder="login"
+          autoComplete="user-login"
           onChange={handleChange}
         />
-        <InputWithLabel
-          labelId="password-id"
-          labelTitle="Password"
-          type="password"
-          name="password"
-          placeholder="password"
-          onChange={handleChange}
-          autocomplete="on"
-        />
+        <div>
+          <InputWithLabel
+            labelId="password-id"
+            labelTitle="Password"
+            type="password"
+            name="password"
+            placeholder="password"
+            onChange={handleChange}
+            autoComplete="current-password"
+          />
+        </div>
         <Button type="onsubmit">Zaloguj Się</Button>
         <StyledDescription>
           <Description>Nie masz jeszcze konta ? </Description>
-          <Description bold as={Link} to={'/register'}>
+          <Description bold="true" as={Link} to={'/register'}>
             Zarejestruj się
           </Description>
         </StyledDescription>

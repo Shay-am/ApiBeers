@@ -1,9 +1,17 @@
 import React from 'react';
 import PropType from 'prop-types';
 import { Label, StyledWrapper } from './InputWithLabel.styled';
-import { Input } from '../../../Components';
+import { Input } from '../..';
 
-export const InputWithLabel = ({ labelId, labelTitle, type, name, placeholder, onChange }) => {
+export const InputWithLabel = ({
+  labelId,
+  labelTitle,
+  type,
+  name,
+  placeholder,
+  onChange,
+  autoComplete
+}) => {
   return (
     <StyledWrapper>
       <Label htmlFor={labelId}>{labelTitle}</Label>
@@ -13,6 +21,7 @@ export const InputWithLabel = ({ labelId, labelTitle, type, name, placeholder, o
         id={labelId}
         placeholder={placeholder}
         onChange={onChange}
+        autoComplete={autoComplete}
         required
       />
     </StyledWrapper>
@@ -25,6 +34,7 @@ InputWithLabel.propTypes = {
   type: PropType.string.isRequired,
   name: PropType.string.isRequired,
   placeholder: PropType.string.isRequired,
+  autoComplete: PropType.string,
   onChange: PropType.func.isRequired
 };
 

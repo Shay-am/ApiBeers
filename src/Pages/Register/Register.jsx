@@ -1,15 +1,20 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuthContext } from '../../Context/authProvider';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { checkEmail, checkPassword } from '../../Utils/validation';
 import { Button, Registration, Form, InputWithLabel, Description } from '../../Components';
-import { StyledCointanerInput, StyledDescriptionCointaner } from './Register.styled';
+import {
+  StyledCointanerInput,
+  StyledDescriptionCointaner,
+  StyledDescriptionError
+} from './Register.styled';
+import { signUp } from '../../Services/signUp';
 
 export const Register = () => {
-  const { signUp } = useAuthContext();
+  const navigate = useNavigate();
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
 
   const [contentInputs, setContentInput] = useState({
     login: '',
@@ -19,21 +24,18 @@ export const Register = () => {
 
   const { login, email, password } = contentInputs;
 
-  const checkEmail = (params) => {
-    if (!params.email) {
-      setIsValidEmail(false);
-    } else if (!/\S+@\S+\.\S+/.test(params.email)) {
-      setIsValidEmail(false);
-    } else {
-      setIsValidEmail(true);
-    }
-  };
-
-  const checkPassword = (params) => {
-    if (params.password.length < 7) {
-      setIsValidPassword(false);
-    } else {
-      setIsValidPassword(true);
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    setError('');
+    setMessage('');
+    try {
+      const newUser = await signUp(login, email, password);
+      if (newUser) {
+        navigate('/login');
+        setMessage(newUser.data.message);
+      }
+    } catch (error) {
+      setError(error.response.data.err);
     }
   };
 
@@ -42,13 +44,19 @@ export const Register = () => {
   };
 
   useEffect(() => {
-    checkEmail(contentInputs);
-    checkPassword(contentInputs);
-  }, [isValidEmail, isValidPassword, contentInputs]);
+    let isCancelled = false;
+    if (!isCancelled) {
+      checkEmail(contentInputs, setIsValidEmail);
+      checkPassword(contentInputs, setIsValidPassword);
+    }
+    return () => {
+      isCancelled = true;
+    };
+  }, [isValidEmail, isValidPassword, contentInputs, error, message]);
 
   return (
     <Registration name="Rejestracja">
-      <Form onSubmit={(e) => signUp(e, login, email, password)}>
+      <Form onSubmit={(e) => handleSignUp(e)}>
         <InputWithLabel
           labelId="loginId"
           labelTitle="Login"
@@ -82,6 +90,8 @@ export const Register = () => {
             autoComplete="on"
           />
         </StyledCointanerInput>
+        {message && <Description>{message}</Description>}
+        {error && <StyledDescriptionError>{error}</StyledDescriptionError>}
         <Button>Zarejestruj się</Button>
         <StyledDescriptionCointaner>
           <Description>Masz już konto? </Description>

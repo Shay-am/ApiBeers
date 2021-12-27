@@ -1,51 +1,33 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
-const URL = 'http://localhost:2000';
+import { URL_To_Connect_With_Server } from '../Constants/constants';
 
 const AuthContext = createContext();
 
 export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [activeTokenUser, setActiveUser] = useState();
+
+  const getActiveToken = () => activeTokenUser;
 
   const addBeer = async (data) => {
     try {
-      const response = await axios.post(`${URL}/addBeer`, data, {
+      const response = await axios.post(`${URL_To_Connect_With_Server}/addBeer`, data, {
         headers: {
           ['authorization']: `Bearer ${activeTokenUser}`
         }
       });
-
-      if (response.data) {
-        console.log(response.status);
-      }
+      return response;
     } catch (error) {
       console.log(error.response);
     }
   };
 
-  const signUp = async (e, nameUser, emailUser, passwordUser) => {
-    e.preventDefault();
-    const data = {
-      name: nameUser,
-      email: emailUser,
-      password: passwordUser
-    };
-
-    try {
-      const newUser = await axios.post(`${URL}/register`, data);
-
-      if (newUser) {
-        console.log(newUser);
-      }
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
+  const logut = () => setActiveUser(null);
 
   const LogIn = async (e, nameUser, passwordUser) => {
     e.preventDefault();
@@ -54,19 +36,21 @@ export const AuthProvider = ({ children }) => {
       password: passwordUser
     };
 
-    const user = await axios.post(`${URL}/login`, data);
+    const user = await axios.post(`${URL_To_Connect_With_Server}/login`, data);
     if (user) {
       setActiveUser(user.data.token);
+      navigate('/');
     }
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {}, [activeTokenUser]);
 
   const store = {
     activeTokenUser,
-    signUp,
+    logut,
     LogIn,
-    addBeer
+    addBeer,
+    getActiveToken
   };
 
   return (

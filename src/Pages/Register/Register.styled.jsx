@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import isOk from '../../Assets/isOk.png';
 import isNotOk from '../../Assets/isNotOk.png';
 import { StyledDescription } from '../Login/Login.styled';
+import { Description } from '../../Components';
 
 export const StyledCointanerInput = styled.div`
   position: relative;
@@ -18,4 +19,8 @@ export const StyledCointanerInput = styled.div`
 
 export const StyledDescriptionCointaner = styled(StyledDescription)`
   width: 50%;
+`;
+
+export const StyledDescriptionError = styled(Description)`
+  color: red;
 `;

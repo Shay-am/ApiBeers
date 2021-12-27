@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { URL_To_Connect_With_Server } from '../Constants/constants';
 import { useAuthContext } from '../Context/authProvider';
-const URL = 'http://localhost:2000';
 
 export const getBeersFromDataBase = () => {
   const { activeTokenUser } = useAuthContext();
@@ -12,7 +12,7 @@ export const getBeersFromDataBase = () => {
   const getBeers = async () => {
     setLoading(true);
     try {
-      const data = await axios.get(`${URL}/getBeers`, {
+      const data = await axios.get(`${URL_To_Connect_With_Server}/getBeers`, {
         headers: {
           ['authorization']: `Bearer ${activeTokenUser}`
         }
