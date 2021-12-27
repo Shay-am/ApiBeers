@@ -27,13 +27,13 @@ Install all dependencies
 
 ```bash
 npm install
-``
+```
 
 Run the project
 
 ```bash
 npm start
-``
+```
 
 
 
