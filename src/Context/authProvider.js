@@ -12,8 +12,6 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [activeTokenUser, setActiveUser] = useState();
 
-  const getActiveToken = () => activeTokenUser;
-
   const addBeer = async (data) => {
     try {
       const response = await axios.post(`${URL_To_Connect_With_Server}/addBeer`, data, {
@@ -49,8 +47,7 @@ export const AuthProvider = ({ children }) => {
     activeTokenUser,
     logut,
     LogIn,
-    addBeer,
-    getActiveToken
+    addBeer
   };
 
   return (

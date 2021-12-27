@@ -1,6 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useMatch } from 'react-router-dom';
 import logoStar from '../../../Assets/star.png';
 import {
   StyledHeading,
@@ -11,12 +11,10 @@ import {
   StyledStar
 } from './Card.styled';
 import { Description, HeadingH3 } from '../..';
-import { useMatch } from 'react-router-dom';
-import { addBeertest } from '../../../Services/addBeerToDataBase';
 import { CardWrapper } from './Card.styled';
 import { useAuthContext } from '../../../Context/authProvider';
 
-export const Card = ({ name, image_url, tagline, ingredients, index, sendEmail }) => {
+export const Card = ({ name, image_url, tagline, ingredients }) => {
   const favorite = useMatch('/favorite');
   const { addBeer } = useAuthContext();
 
@@ -41,11 +39,7 @@ export const Card = ({ name, image_url, tagline, ingredients, index, sendEmail }
           <StyledStar src={logoStar} alt="image star" onClick={() => addBeer(saveObjInDataBase)} />
         </StyledStarWrapper>
       )}
-      {favorite && (
-        <StyledStarWrapper>
-          {/* <StyledStar src={logoStar} alt="image star" onClick={(e) => sendEmail(e)} /> */}
-        </StyledStarWrapper>
-      )}
+      {favorite && <StyledStarWrapper />}
       <StyledHeading>
         <HeadingH3>{name}</HeadingH3>
       </StyledHeading>

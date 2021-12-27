@@ -9,7 +9,6 @@ export const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale; 
   }
   html {
-       /* width: 100vw; */
       font-size: 62.5%;
       font-family: Arial, Helvetica, sans-serif;
   }
