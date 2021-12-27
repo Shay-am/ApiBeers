@@ -5,14 +5,17 @@
 Stack:
 
 ReactJs
+
 Styled Components
+
 Axios
+
 Context
 
 
-Link to LiveDemo 
+Link to [LiveDemo](https://optimistic-hopper-c07ee8.netlify.app)
 
-https://optimistic-hopper-c07ee8.netlify.app
+
 
 ## Installation
 
