@@ -9,7 +9,7 @@ export const checkEmail = (params, callback) => {
 };
 
 export const checkPassword = (params, callback) => {
-  if (params.password.length < 7) {
+  if (params.password.length < 5) {
     callback(false);
   } else {
     callback(true);
