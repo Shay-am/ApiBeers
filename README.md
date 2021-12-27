@@ -1,5 +1,7 @@
 # ApiBeers
 
+## Link to [LiveDemo](https://optimistic-hopper-c07ee8.netlify.app)
+
 FullStack App
 
 Link to server [code](https://github.com/Shay-am/server)
@@ -15,11 +17,6 @@ Styled Components
 Axios
 
 Context
-
-
-Link to [LiveDemo](https://optimistic-hopper-c07ee8.netlify.app)
-
-
 
 ## Installation
 
