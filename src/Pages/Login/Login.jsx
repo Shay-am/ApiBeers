@@ -1,12 +1,14 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { StyledDescription } from './Login.styled';
 import { Button, Description, Registration, Form, InputWithLabel } from '../../Components';
-
-import { useAuthContext } from '../../Context/authProvider';
+import { useLogin } from '../../Services/useLogin';
+import { StyledDescriptionError } from '../Register/Register.styled';
 
 export const Login = () => {
-  const { LogIn } = useAuthContext();
+  const { signIn, loading, error } = useLogin();
+
   const [contentInputs, setContentInput] = useState({
     login: '',
     password: ''
@@ -20,7 +22,7 @@ export const Login = () => {
 
   return (
     <Registration name="Zaloguj Się">
-      <Form onSubmit={(e) => LogIn(e, login, password)} autoComplete="on">
+      <Form onSubmit={(e) => signIn(e, login, password)}>
         <InputWithLabel
           labelId="login-id"
           labelTitle="Login"
@@ -40,7 +42,15 @@ export const Login = () => {
             autoComplete="current-password"
           />
         </div>
-        <Button type="submit">Zaloguj Się</Button>
+        {loading && <Description>Loading...</Description>}
+        {error && (
+          <StyledDescriptionError>
+            The username or password is incorrect. Try again!!!
+          </StyledDescriptionError>
+        )}
+        <Button type="submit" onClick={() => console.log('click')}>
+          Zaloguj Się
+        </Button>
         <StyledDescription>
           <Description>Nie masz jeszcze konta ? </Description>
           <Description bold="true" as={Link} to={'/register'}>

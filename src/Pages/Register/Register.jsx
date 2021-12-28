@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { checkEmail, checkPassword } from '../../Utils/validation';
 import { Button, Registration, Form, InputWithLabel, Description } from '../../Components';
 import {
@@ -7,14 +7,13 @@ import {
   StyledDescriptionCointaner,
   StyledDescriptionError
 } from './Register.styled';
-import { signUp } from '../../Services/signUp';
+import { useSignUp } from '../../Services/useSignUp';
 
 export const Register = () => {
-  const navigate = useNavigate();
+  const { signUp, error, message, loading } = useSignUp();
+
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
 
   const [contentInputs, setContentInput] = useState({
     login: '',
@@ -23,21 +22,6 @@ export const Register = () => {
   });
 
   const { login, email, password } = contentInputs;
-
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-    setError('');
-    setMessage('');
-    try {
-      const newUser = await signUp(login, email, password);
-      if (newUser) {
-        navigate('/login');
-        setMessage(newUser.data.message);
-      }
-    } catch (error) {
-      setError(error.response.data.err);
-    }
-  };
 
   const handleChange = (e) => {
     setContentInput({ ...contentInputs, [e.target.name]: e.target.value });
@@ -52,11 +36,11 @@ export const Register = () => {
     return () => {
       isCancelled = true;
     };
-  }, [isValidEmail, isValidPassword, contentInputs, error, message]);
+  }, [isValidEmail, isValidPassword, contentInputs]);
 
   return (
     <Registration name="Rejestracja">
-      <Form onSubmit={(e) => handleSignUp(e)}>
+      <Form onSubmit={(e) => signUp(e, login, email, password)}>
         <InputWithLabel
           labelId="loginId"
           labelTitle="Login"
@@ -90,6 +74,7 @@ export const Register = () => {
             autoComplete="on"
           />
         </StyledCointanerInput>
+        {loading && <Description>Loading...</Description>}
         {message && <Description>{message}</Description>}
         {error && <StyledDescriptionError>{error}</StyledDescriptionError>}
         <Button type="submit">Zarejestruj się</Button>

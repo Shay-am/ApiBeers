@@ -23,4 +23,5 @@ export const StyledDescriptionCointaner = styled(StyledDescription)`
 
 export const StyledDescriptionError = styled(Description)`
   color: red;
+  font-size: calc(0.7rem + 1vmin);
 `;

@@ -4,7 +4,7 @@ import { CardCointaner, Description, Heading } from '../../Components';
 import { StyledForm, StyledInput, StyledButton } from './Favorite.styled';
 import { getBeersFromDataBase } from '../../Services/useGetFavoritesBeer';
 import { MainWrapper, StyledHeading, Wrapper } from '../Home/Home.styled';
-import { sendEmail } from '../../Services/sendEmail';
+import { sendEmail } from '../../Utils/sendEmail';
 
 export const Favorite = () => {
   const { beers, loading, error } = getBeersFromDataBase();
