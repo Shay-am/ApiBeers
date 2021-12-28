@@ -9,7 +9,6 @@ const AuthContext = createContext();
 export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  // const navigate = useNavigate();
   const [activeTokenUser, setActiveUser] = useState();
 
   const addBeer = async (data, callback) => {
@@ -35,7 +34,6 @@ export const AuthProvider = ({ children }) => {
   const store = {
     activeTokenUser,
     logut,
-
     addBeer,
     setUserToken
   };

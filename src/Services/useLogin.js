@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 export const useLogin = () => {
   const navigate = useNavigate();
   const { setUserToken } = useAuthContext();
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -37,7 +36,7 @@ export const useLogin = () => {
       setLoading('');
       setError('');
     };
-  }, [signIn]);
+  }, []);
 
   return { signIn, loading, error };
 };
