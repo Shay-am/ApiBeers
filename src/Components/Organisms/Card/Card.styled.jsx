@@ -31,7 +31,7 @@ export const StyledStarWrapper = styled.div`
 
 export const StyledStar = styled.img`
   cursor: pointer;
-
+  filter: ${({ isSelected }) => (isSelected ? `grayscale(100%)` : `none`)};
   &:hover {
     padding: 0.1rem;
   }

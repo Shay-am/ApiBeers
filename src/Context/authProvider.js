@@ -12,14 +12,16 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [activeTokenUser, setActiveUser] = useState();
 
-  const addBeer = async (data) => {
+  const addBeer = async (data, callback) => {
     try {
       const response = await axios.post(`${URL_To_Connect_With_Server}/addBeer`, data, {
         headers: {
           ['authorization']: `Bearer ${activeTokenUser}`
         }
       });
-      return response;
+      if (response) {
+        callback();
+      }
     } catch (error) {
       console.log(error.response);
     }

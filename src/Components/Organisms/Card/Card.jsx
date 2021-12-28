@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useMatch } from 'react-router-dom';
 import logoStar from '../../../Assets/star.png';
@@ -14,8 +14,11 @@ import { CardWrapper } from './Card.styled';
 import { useAuthContext } from '../../../Context/authProvider';
 
 export const Card = ({ name, image_url, tagline, ingredients }) => {
+  const [isSelected, setIsSelected] = useState(false);
   const favorite = useMatch('/favorite');
   const { addBeer } = useAuthContext();
+
+  const handleChangeSelected = () => setIsSelected(true);
 
   const keysIngredients = () => {
     if (typeof ingredients === 'object') {
@@ -31,11 +34,18 @@ export const Card = ({ name, image_url, tagline, ingredients }) => {
     ingredients: keysIngredients()
   };
 
+  useEffect(() => {}, [isSelected]);
+
   return (
     <CardWrapper>
       {!favorite && (
         <StyledStarWrapper>
-          <StyledStar src={logoStar} alt="image star" onClick={() => addBeer(saveObjInDataBase)} />
+          <StyledStar
+            isSelected={isSelected}
+            src={logoStar}
+            alt="image star"
+            onClick={() => addBeer(saveObjInDataBase, handleChangeSelected)}
+          />
         </StyledStarWrapper>
       )}
       {favorite && <StyledStarWrapper />}
