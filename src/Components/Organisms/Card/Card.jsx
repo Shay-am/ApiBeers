@@ -6,7 +6,6 @@ import {
   StyledHeading,
   StyledDescription,
   StyledImage,
-  Image,
   StyledStarWrapper,
   StyledStar
 } from './Card.styled';
@@ -47,9 +46,7 @@ export const Card = ({ name, image_url, tagline, ingredients }) => {
         <Description>{tagline}</Description>
         <Description>składniki: {keysIngredients()}</Description>
       </StyledDescription>
-      <StyledImage>
-        <Image src={image_url} alt={name} />
-      </StyledImage>
+      <StyledImage image_url={image_url} />
     </CardWrapper>
   );
 };

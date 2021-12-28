@@ -10,6 +10,7 @@ export const CardWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.color.border_light_blue};
   border-radius: 0.5rem;
   margin: 1rem;
+  justify-content: center;
 
   @media (max-width: 950px) {
     width: 22rem;
@@ -46,16 +47,15 @@ export const StyledDescription = styled.div`
   width: 90%;
   flex-direction: column;
   justify-content: space-around;
-  margin: 1.6rem 0 0 0;
+  margin: 1rem 0 1rem 0;
 `;
 
 export const StyledImage = styled.div`
-  width: 90%;
-  height: 62%;
-  margin-top: 1rem;
-`;
-export const Image = styled.img`
+  background-image: ${(props) => `url(${props.image_url})`};
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   width: 100%;
-  height: 90%;
-  z-index: 10;
+  height: 80%;
+  margin: 1rem auto;
 `;
