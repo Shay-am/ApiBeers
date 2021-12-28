@@ -92,7 +92,7 @@ export const Register = () => {
         </StyledCointanerInput>
         {message && <Description>{message}</Description>}
         {error && <StyledDescriptionError>{error}</StyledDescriptionError>}
-        <Button>Zarejestruj się</Button>
+        <Button type="submit">Zarejestruj się</Button>
         <StyledDescriptionCointaner>
           <Description>Masz już konto? </Description>
           <Description bold="true" as={Link} to={'/login'}>
