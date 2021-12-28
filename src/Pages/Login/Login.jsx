@@ -40,7 +40,7 @@ export const Login = () => {
             autoComplete="current-password"
           />
         </div>
-        <Button type="onsubmit">Zaloguj Się</Button>
+        <Button type="submit">Zaloguj Się</Button>
         <StyledDescription>
           <Description>Nie masz jeszcze konta ? </Description>
           <Description bold="true" as={Link} to={'/register'}>
