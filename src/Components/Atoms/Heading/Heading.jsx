@@ -9,7 +9,7 @@ export const Heading = styled.h1`
 `;
 
 export const HeadingH3 = styled.h3`
-  font-size: 2vmin;
+  font-size: calc(2.4rem - 1vmin);
   color: ${({ theme }) => theme.color.text_blue};
   font-weight: ${({ theme }) => theme.weight.bold};
   letter-spacing: 0px;

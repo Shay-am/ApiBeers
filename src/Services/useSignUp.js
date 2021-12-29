@@ -16,7 +16,7 @@ export const useSignUp = () => {
       email: emailUser,
       password: passwordUser
     };
-    setError('');
+    setError(false);
     setMessage('');
 
     try {
@@ -27,7 +27,8 @@ export const useSignUp = () => {
         navigate('/');
       }
     } catch (error) {
-      setError(error.response.data.err);
+      setError(true);
+      setMessage(error.response.data.err);
     }
 
     setLoading(false);

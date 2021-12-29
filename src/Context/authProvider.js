@@ -1,41 +1,21 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import axios from 'axios';
-import { URL_To_Connect_With_Server } from '../Constants/constants';
-
 const AuthContext = createContext();
 
 export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const [activeTokenUser, setActiveUser] = useState();
+  const [activeTokenUser, setActiveTokenUser] = useState();
 
-  const addBeer = async (data, callback) => {
-    try {
-      const response = await axios.post(`${URL_To_Connect_With_Server}/addBeer`, data, {
-        headers: {
-          ['authorization']: `Bearer ${activeTokenUser}`
-        }
-      });
-      if (response) {
-        callback();
-      }
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
-
-  const setUserToken = (token) => setActiveUser(token);
-  const logut = () => setActiveUser(null);
+  const logut = () => setActiveTokenUser(null);
 
   useEffect(() => {}, [activeTokenUser]);
 
   const store = {
     activeTokenUser,
     logut,
-    addBeer,
-    setUserToken
+    setActiveTokenUser
   };
 
   return (

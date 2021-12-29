@@ -5,7 +5,8 @@ import { Button, Registration, Form, InputWithLabel, Description } from '../../C
 import {
   StyledCointanerInput,
   StyledDescriptionCointaner,
-  StyledDescriptionError
+  StyledDescriptionError,
+  StyledLoginCointaner
 } from './Register.styled';
 import { useSignUp } from '../../Services/useSignUp';
 
@@ -41,15 +42,17 @@ export const Register = () => {
   return (
     <Registration name="Rejestracja">
       <Form onSubmit={(e) => signUp(e, login, email, password)}>
-        <InputWithLabel
-          labelId="loginId"
-          labelTitle="Login"
-          name="login"
-          placeholder="login"
-          value={contentInputs.login || ' '}
-          onChange={handleChange}
-        />
-
+        <StyledLoginCointaner>
+          <InputWithLabel
+            labelId="loginId"
+            labelTitle="Login"
+            name="login"
+            placeholder="login"
+            value={contentInputs.login || ' '}
+            onChange={handleChange}
+          />
+          <Description size="1rem">Usernames must be at least 3 characters</Description>
+        </StyledLoginCointaner>
         <StyledCointanerInput isValid={isValidEmail}>
           <InputWithLabel
             labelId="emailId"
@@ -73,10 +76,12 @@ export const Register = () => {
             onChange={handleChange}
             autoComplete="on"
           />
+          <Description size="1rem">Password must be at least 5 characters</Description>
         </StyledCointanerInput>
         {loading && <Description>Loading...</Description>}
-        {message && <Description>{message}</Description>}
-        {error && <StyledDescriptionError>{error}</StyledDescriptionError>}
+        {!loading && message && (
+          <StyledDescriptionError error={error}>{message}</StyledDescriptionError>
+        )}
         <Button type="submit">Zarejestruj się</Button>
         <StyledDescriptionCointaner>
           <Description>Masz już konto? </Description>

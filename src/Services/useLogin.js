@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const useLogin = () => {
   const navigate = useNavigate();
-  const { setUserToken } = useAuthContext();
+  const { setActiveTokenUser } = useAuthContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -22,7 +22,7 @@ export const useLogin = () => {
       setLoading(true);
       const user = await axios.post(`${URL_To_Connect_With_Server}/login`, data);
       if (user) {
-        setUserToken(user.data.token);
+        setActiveTokenUser(user.data.token);
         navigate('/');
       }
     } catch (error) {

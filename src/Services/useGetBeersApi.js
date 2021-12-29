@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
-const API_URL = 'https://api.punkapi.com/v2/beers';
+import { API_BEERS_URL } from '../Constants/constants';
 
 export const useGetBeersApi = () => {
   const [beers, setBeers] = useState([]);
@@ -11,7 +10,7 @@ export const useGetBeersApi = () => {
   const getBeers = async () => {
     setLoading(true);
     try {
-      const data = await axios.get(API_URL);
+      const data = await axios.get(API_BEERS_URL);
       setBeers(data?.data);
     } catch (error) {
       setError(true);

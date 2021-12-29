@@ -48,9 +48,7 @@ export const Login = () => {
             The username or password is incorrect. Try again!!!
           </StyledDescriptionError>
         )}
-        <Button type="submit" onClick={() => console.log('click')}>
-          Zaloguj Się
-        </Button>
+        <Button type="submit">Zaloguj Się</Button>
         <StyledDescription>
           <Description>Nie masz jeszcze konta ? </Description>
           <Description bold="true" as={Link} to={'/register'}>
