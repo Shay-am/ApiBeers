@@ -6,6 +6,8 @@ import { StyledDescription } from '../Login/Login.styled';
 import { Description } from '../../Components';
 
 export const StyledLoginCointaner = styled.div`
+  display: flex;
+  align-items: center;
   position: relative;
   margin-bottom: 0.9rem;
   span {
@@ -17,8 +19,14 @@ export const StyledLoginCointaner = styled.div`
 
 export const StyledCointanerInput = styled(StyledLoginCointaner)`
   &:after {
-    content: ${({ isValid }) => (isValid ? `url(${isOk})` : `url(${isNotOk})`)};
-    width: 1rem;
+    content: '';
+    background-image: ${({ isValid }) => (isValid ? `url(${isOk})` : `url(${isNotOk})`)};
+    background-size: 1.5rem 1.5rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 2.5rem;
+    height: 2.5rem;
+
     position: absolute;
     top: 4.1rem;
     right: 2rem;
@@ -31,5 +39,5 @@ export const StyledDescriptionCointaner = styled(StyledDescription)`
 
 export const StyledDescriptionError = styled(Description)`
   color: ${({ theme, error }) => (error ? 'red' : theme.color.text_blue)};
-  font-size: calc(0.7rem + 1vmin);
+  /* font-size: calc(0.7rem - 2vmin); */
 `;

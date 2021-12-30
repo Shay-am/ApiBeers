@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { checkEmail, checkPassword } from '../../Utils/validation';
@@ -9,79 +10,76 @@ import {
   StyledLoginCointaner
 } from './Register.styled';
 import { useSignUp } from '../../Services/useSignUp';
+import { useValidate } from '../../Hooks/useValidate';
+import { validateEmailRules } from '../../Utils/validateEmailRules';
 
 export const Register = () => {
-  const { signUp, error, message, loading } = useSignUp();
+  const { signUp, resetMessage, message, loading } = useSignUp();
 
-  const [isValidEmail, setIsValidEmail] = useState(false);
-  const [isValidPassword, setIsValidPassword] = useState(false);
+  const { values, errors, setErrors, handleSubmit, handleChange } = useValidate(
+    signUp,
+    validateEmailRules,
+    resetMessage
+  );
 
-  const [contentInputs, setContentInput] = useState({
-    login: '',
-    email: '',
-    password: ''
-  });
-
-  const { login, email, password } = contentInputs;
-
-  const handleChange = (e) => {
-    setContentInput({ ...contentInputs, [e.target.name]: e.target.value });
-  };
-
-  useEffect(() => {
-    let isCancelled = false;
-    if (!isCancelled) {
-      checkEmail(contentInputs, setIsValidEmail);
-      checkPassword(contentInputs, setIsValidPassword);
-    }
-    return () => {
-      isCancelled = true;
-    };
-  }, [isValidEmail, isValidPassword, contentInputs]);
+  console.log(values.login);
 
   return (
     <Registration name="Rejestracja">
-      <Form onSubmit={(e) => signUp(e, login, email, password)}>
+      <Form onSubmit={handleSubmit}>
         <StyledLoginCointaner>
           <InputWithLabel
             labelId="loginId"
             labelTitle="Login"
             name="login"
             placeholder="login"
-            value={contentInputs.login || ' '}
+            value={values.login || ''}
             onChange={handleChange}
           />
-          <Description size="1rem">Usernames must be at least 3 characters</Description>
+          {errors.login && (
+            <StyledDescriptionError error={errors.login} size="1rem">
+              {errors.login}
+            </StyledDescriptionError>
+          )}
         </StyledLoginCointaner>
-        <StyledCointanerInput isValid={isValidEmail}>
+        <StyledCointanerInput isValid={!errors.email}>
           <InputWithLabel
             labelId="emailId"
             labelTitle="E-mail"
-            type="e-mail"
+            type="email"
             name="email"
             placeholder="e-mail"
-            value={contentInputs.email || ' '}
-            onChange={(e) => handleChange(e)}
-            autoComplete="true"
+            value={values.email || ''}
+            onChange={handleChange}
+            autoComplete="on"
           />
+          {!message && errors.email && (
+            <StyledDescriptionError size="1rem" error={errors.email}>
+              {errors.email}
+            </StyledDescriptionError>
+          )}
+          {message && (
+            <StyledDescriptionError size="1rem" error={errors.email}>
+              {message}
+            </StyledDescriptionError>
+          )}
         </StyledCointanerInput>
-        <StyledCointanerInput isValid={isValidPassword}>
+        <StyledCointanerInput isValid={!errors.password}>
           <InputWithLabel
             labelId="passwordId"
             labelTitle="Password"
             type="password"
             name="password"
             placeholder="password"
-            value={contentInputs.password || ''}
+            value={values.password || ''}
             onChange={handleChange}
             autoComplete="on"
           />
-          <Description size="1rem">Password must be at least 5 characters</Description>
+          <StyledDescriptionError error={errors.password} size="1rem">
+            Password must be at least 7 characters
+          </StyledDescriptionError>
         </StyledCointanerInput>
         {loading && <Description>Loading...</Description>}
-        {!loading && message && (
-          <StyledDescriptionError error={error}>{message}</StyledDescriptionError>
-        )}
         <Button type="submit">Zarejestruj się</Button>
         <StyledDescriptionCointaner>
           <Description>Masz już konto? </Description>

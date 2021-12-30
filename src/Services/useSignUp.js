@@ -23,7 +23,6 @@ export const useSignUp = () => {
       setLoading(true);
       const newUser = await axios.post(`${URL_To_Connect_With_Server}/register`, data);
       if (newUser) {
-        setMessage(newUser.data.message);
         navigate('/');
       }
     } catch (error) {
@@ -34,5 +33,5 @@ export const useSignUp = () => {
     setLoading(false);
   };
 
-  return { signUp, loading, error, message };
+  return { signUp, setMessage, loading, error, message };
 };
