@@ -4,13 +4,9 @@ Link to server code https://github.com/Shay-am/server)
 
 ## Link to [LiveDemo](https://optimistic-hopper-c07ee8.netlify.app)
 
+## Client:
 
-
-
-
-##
-
-Stack:
+### Stack:
 
 ReactJs
 
@@ -19,6 +15,10 @@ Styled Components
 Axios
 
 Context
+
+
+
+
 
 ## Installation
 
