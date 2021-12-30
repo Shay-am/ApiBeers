@@ -1,10 +1,12 @@
-# ApiBeers
+# FullStack App  ApiBeers
+
+Link to server code https://github.com/Shay-am/server)
 
 ## Link to [LiveDemo](https://optimistic-hopper-c07ee8.netlify.app)
 
-FullStack App
 
-Link to server [code](https://github.com/Shay-am/server)
+
+
 
 ##
 
