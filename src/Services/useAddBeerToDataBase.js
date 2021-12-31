@@ -10,8 +10,8 @@ export const useAddBeerToDataBase = () => {
   const [error, setError] = useState(false);
 
   const addBeer = async (data, callback) => {
-    setLoading(true);
     try {
+      setLoading(true);
       const response = await axios.post(`${URL_To_Connect_With_Server}/addBeer`, data, {
         headers: {
           ['authorization']: `Bearer ${activeTokenUser}`

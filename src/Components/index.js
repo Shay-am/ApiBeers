@@ -9,6 +9,7 @@ import { Card } from './Organisms/Card/Card';
 import { Nav } from './Organisms/Nav/Nav';
 import { CardCointaner } from './Templates/CardCointainer/CardCointaner';
 import { Registration } from './Templates/Registration/Registration';
+import { SendEmail } from './Organisms/SendEmail/SendEmail';
 
 export {
   Button,
@@ -22,5 +23,6 @@ export {
   InputWithLabel,
   CardCointaner,
   Registration,
-  Nav
+  Nav,
+  SendEmail
 };

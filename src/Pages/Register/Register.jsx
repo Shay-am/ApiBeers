@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Registration, Form, InputWithLabel, Description } from '../../Components';
 import {
@@ -14,14 +14,11 @@ import { validateEmailRules } from '../../Utils/validateEmailRules';
 
 export const Register = () => {
   const { signUp, resetMessage, message, loading } = useSignUp();
-
-  const { values, errors, setErrors, handleSubmit, handleChange } = useValidate(
+  const { values, errors, handleSubmit, handleChange } = useValidate(
     signUp,
     validateEmailRules,
     resetMessage
   );
-
-  console.log(values.login);
 
   return (
     <Registration name="Rejestracja">

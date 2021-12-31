@@ -40,7 +40,7 @@ export const Card = ({ name, image_url, tagline, ingredients }) => {
             isSelected={isSelected}
             src={logoStar}
             alt="image star"
-            onClick={() => addBeer(saveObjInDataBase, handleChangeSelected)}
+            onClick={() => (!isSelected ? addBeer(saveObjInDataBase, handleChangeSelected) : null)}
           />
         </StyledStarWrapper>
       )}

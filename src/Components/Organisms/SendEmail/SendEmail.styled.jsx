@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button, Input } from '../../Components';
+import { Button, Input } from '../..';
 
 export const StyledFormWrapper = styled.div`
   display: flex;
@@ -12,7 +12,6 @@ export const StyledFormWrapper = styled.div`
 export const StyledDescription = styled.div`
   width: 100%;
   text-align: center;
-  /* transform: translateX(3rem); */
 `;
 
 export const StyledForm = styled.form`
