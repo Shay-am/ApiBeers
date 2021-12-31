@@ -11,10 +11,10 @@ export const useValidate = (callback, validate) => {
     // }
   }, [values, errors]);
 
-  // const { message } = callback();
-  // if (message) {
-  //   setErrors((errors.email = message));
-  // }
+  const { message } = callback();
+  if (message) {
+    setErrors((errors.email = message));
+  }
 
   const handleChange = (e) => {
     setErrors(validate(values));
@@ -24,11 +24,9 @@ export const useValidate = (callback, validate) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (Object.keys(errors).length === 0) {
-      console.log(values);
-
       callback(e, ...Object.values(values));
     }
-    console.log('nie wysyła');
+
     setErrors(validate(values));
     setIsSubmitting(true);
   };

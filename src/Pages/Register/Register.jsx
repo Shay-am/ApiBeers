@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { checkEmail, checkPassword } from '../../Utils/validation';
+
 import { Button, Registration, Form, InputWithLabel, Description } from '../../Components';
 import {
   StyledCointanerInput,
