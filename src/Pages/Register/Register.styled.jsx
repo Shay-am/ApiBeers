@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
 import styled from 'styled-components';
-import isOk from '../../Assets/isOk.png';
-import isNotOk from '../../Assets/isNotOk.png';
-import { StyledDescription } from '../Login/Login.styled';
-import { Description } from '../../Components';
+import isOk from 'Assets/isOk.png';
+import isNotOk from 'Assets/isNotOk.png';
+import { StyledDescription } from 'Pages/Login/Login.styled';
 
 export const StyledLoginCointaner = styled.div`
   display: flex;
@@ -26,7 +24,6 @@ export const StyledCointanerInput = styled(StyledLoginCointaner)`
     background-position: center;
     width: 2.5rem;
     height: 2.5rem;
-
     position: absolute;
     top: 4.1rem;
     right: 2rem;
@@ -35,9 +32,4 @@ export const StyledCointanerInput = styled(StyledLoginCointaner)`
 
 export const StyledDescriptionCointaner = styled(StyledDescription)`
   width: 50%;
-`;
-
-export const StyledDescriptionError = styled(Description)`
-  color: ${({ theme, error }) => (error ? 'red' : theme.color.text_blue)};
-  /* font-size: calc(0.7rem - 2vmin); */
 `;

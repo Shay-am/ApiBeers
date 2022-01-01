@@ -1,7 +1,7 @@
 import React from 'react';
 import PropType from 'prop-types';
 import { Label, StyledWrapper } from './InputWithLabel.styled';
-import { Input } from '../..';
+import { Input } from 'Components';
 
 export const InputWithLabel = ({
   labelId,

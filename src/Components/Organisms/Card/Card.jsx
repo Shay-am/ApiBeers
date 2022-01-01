@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useMatch } from 'react-router-dom';
-import logoStar from '../../../Assets/star.png';
+import logoStar from 'Assets/star.png';
 import {
   StyledHeading,
   StyledDescription,
@@ -11,9 +11,9 @@ import {
   StyledStar,
   CardWrapper
 } from './Card.styled';
-import { Description, HeadingH3 } from '../..';
-import { convertObjectToString } from '../../../Utils/convertObjectToString';
-import { useAddBeerToDataBase } from '../../../Services/useAddBeerToDataBase';
+import { Description, HeadingH3 } from 'Components';
+import { convertObjectToString } from 'Utils/convertObjectToString';
+import { useAddBeerToDataBase } from 'Api/Services/useAddBeerToDataBase';
 
 export const Card = ({ name, image_url, tagline, ingredients }) => {
   const { addBeer, loading, error } = useAddBeerToDataBase();

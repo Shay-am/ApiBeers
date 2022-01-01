@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button, Input } from '../../Components';
+import { Button, Input } from 'Components';
 
 export const StyledFormWrapper = styled.div`
   display: flex;

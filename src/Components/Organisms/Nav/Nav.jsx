@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Wrapper, StyledLink } from './Nav.styled';
-import { useAuthContext } from '../../../Context/authProvider';
+import { useAuthContext } from 'Context/authProvider';
 
 export const Nav = () => {
   const { activeTokenUser, logut } = useAuthContext();

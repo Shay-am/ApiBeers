@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import axios from 'axios';
-import { URL_To_Connect_With_Server } from '../Constants/constants';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { URL_To_Connect_With_Server } from 'Constants/constants';
 
 export const useSignUp = () => {
   const navigate = useNavigate();

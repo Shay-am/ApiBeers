@@ -6,10 +6,10 @@ import {
   StyledHeading,
   MainWrapper
 } from './Home.styled';
-import { Pagination, Heading, CardCointaner } from '../../Components';
-import { Logo } from '../../Assets';
-import { getCurentsBeers } from '../../Utils/getCurrentBeers';
-import { useGetBeersApi } from '../../Services/useGetBeersApi';
+import { Pagination, Heading, CardCointaner } from 'Components';
+import { Logo } from 'Assets';
+import { getCurentsBeers } from 'Utils/getCurrentBeers';
+import { useGetBeersApi } from 'Api/Services/useGetBeersApi';
 
 export const Home = () => {
   const { beers, loading, error } = useGetBeersApi();

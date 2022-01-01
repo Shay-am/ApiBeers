@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Login, Register, Home, Favorite } from '../Pages';
+import { Login, Register, Home, Favorite } from 'Pages';
 import { PrivateRoutes } from './PrivateRoutes';
 
 export const Switch = () => {

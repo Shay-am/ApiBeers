@@ -1,16 +1,14 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Registration, Form, InputWithLabel, Description } from '../../Components';
+import { Button, Registration, Form, InputWithLabel, Description } from 'Components';
 import {
   StyledCointanerInput,
   StyledDescriptionCointaner,
-  StyledDescriptionError,
   StyledLoginCointaner
 } from './Register.styled';
-import { useSignUp } from '../../Services/useSignUp';
-import { useValidate } from '../../Hooks/useValidate';
-import { validateEmailRules } from '../../Utils/validateEmailRules';
+import { useSignUp } from 'Api/Auth/useSignUp';
+import { useValidate } from 'Hooks/useValidate';
+import { validateEmailRules } from 'Utils/validateEmailRules';
 
 export const Register = () => {
   const { signUp, resetMessage, message, loading } = useSignUp();
@@ -33,9 +31,9 @@ export const Register = () => {
             onChange={handleChange}
           />
           {errors.login && (
-            <StyledDescriptionError error={errors.login} size="1rem">
+            <Description error={errors.login} size="1rem">
               {errors.login}
-            </StyledDescriptionError>
+            </Description>
           )}
         </StyledLoginCointaner>
         <StyledCointanerInput isValid={!errors.email}>
@@ -50,14 +48,14 @@ export const Register = () => {
             autoComplete="on"
           />
           {!message && errors.email && (
-            <StyledDescriptionError size="1rem" error={errors.email}>
+            <Description size="1rem" error={errors.email}>
               {errors.email}
-            </StyledDescriptionError>
+            </Description>
           )}
           {message && (
-            <StyledDescriptionError size="1rem" error={errors.email}>
+            <Description size="1rem" error={errors.email}>
               {message}
-            </StyledDescriptionError>
+            </Description>
           )}
         </StyledCointanerInput>
         <StyledCointanerInput isValid={!errors.password}>
@@ -71,9 +69,9 @@ export const Register = () => {
             onChange={handleChange}
             autoComplete="on"
           />
-          <StyledDescriptionError error={errors.password} size="1rem">
+          <Description error={errors.password} size="1rem">
             Password must be at least 7 characters
-          </StyledDescriptionError>
+          </Description>
         </StyledCointanerInput>
         {loading && <Description>Loading...</Description>}
         <Button type="submit">Zarejestruj się</Button>

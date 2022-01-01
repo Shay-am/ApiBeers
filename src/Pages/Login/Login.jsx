@@ -2,27 +2,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { StyledDescription } from './Login.styled';
-import { Button, Description, Registration, Form, InputWithLabel } from '../../Components';
-import { useLogin } from '../../Services/useLogin';
-import { StyledDescriptionError } from '../Register/Register.styled';
+import { Button, Description, Registration, Form, InputWithLabel } from 'Components';
+import { useLogin } from 'Api/Auth/useLogin';
 
 export const Login = () => {
-  const { signIn, loading, error } = useLogin();
-
-  const [contentInputs, setContentInput] = useState({
-    login: '',
-    password: ''
-  });
-
-  const { login, password } = contentInputs;
-
-  const handleChange = (e) => {
-    setContentInput({ ...contentInputs, [e.target.name]: e.target.value });
-  };
+  const { signIn, loading, error, handleChange } = useLogin();
 
   return (
     <Registration name="Zaloguj Się">
-      <Form onSubmit={(e) => signIn(e, login, password)}>
+      <Form onSubmit={signIn}>
         <InputWithLabel
           labelId="login-id"
           labelTitle="Login"
@@ -44,9 +32,9 @@ export const Login = () => {
         </div>
         {loading && <Description>Loading...</Description>}
         {error && (
-          <StyledDescriptionError>
+          <Description error={error}>
             The username or password is incorrect. Try again!!!
-          </StyledDescriptionError>
+          </Description>
         )}
         <Button type="submit">Zaloguj Się</Button>
         <StyledDescription>

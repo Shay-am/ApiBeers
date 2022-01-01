@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { URL_To_Connect_With_Server } from '../Constants/constants';
-import { useAuthContext } from '../Context/authProvider';
+import { URL_To_Connect_With_Server } from 'Constants/constants';
+import { useAuthContext } from 'Context/authProvider';
 
 export const useAddBeerToDataBase = () => {
   const { activeTokenUser } = useAuthContext();

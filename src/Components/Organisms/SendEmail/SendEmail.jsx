@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Description } from '../../../Components';
+import { Description } from 'Components';
 import {
   StyledForm,
   StyledInput,
@@ -8,10 +8,12 @@ import {
   StyledFormWrapper,
   StyledDescription
 } from './SendEmail.styled';
-
-import { useSendEmail } from '../../../Utils/sendEmail';
+import { useSendEmail } from 'Api/Services/useSendEmail';
+// import { useValidate } from 'Hooks/useValidate';
 
 export const SendEmail = ({ beers }) => {
+  // const {values, handleSubmit, errors, handleChange} = useValidate()
+
   const [email, setEmail] = useState('');
   const { handleSubmitEmail, message, loadingSendEmail, emailError } = useSendEmail(beers, email);
   return (
