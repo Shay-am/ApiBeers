@@ -1,3 +1,3 @@
-import { ReactComponent as Logo } from './Group14.svg';
+import { ReactComponent as Logo } from './logo.svg';
 
 export { Logo };
