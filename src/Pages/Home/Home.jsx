@@ -24,7 +24,7 @@ export const Home = () => {
     <>
       <Wrapper>
         <StyledHeading>
-          <Heading>Show Element</Heading>
+          <Heading>Show Products</Heading>
         </StyledHeading>
         <MainWrapper>
           {error ? (

@@ -16,7 +16,7 @@ import { convertObjectToString } from 'Utils/convertObjectToString';
 import { useAddBeerToDataBase } from 'Api/Services/useAddBeerToDataBase';
 
 export const Card = ({ name, image_url, tagline, ingredients }) => {
-  const { addBeer, loading, error } = useAddBeerToDataBase();
+  const { addBeer, error, message } = useAddBeerToDataBase();
   const [isSelected, setIsSelected] = useState(false);
   const favorite = useMatch('/favorite');
   const ingredient = convertObjectToString(ingredients);
@@ -34,6 +34,7 @@ export const Card = ({ name, image_url, tagline, ingredients }) => {
 
   return (
     <CardWrapper>
+      {message && <Description error={error}>{message}</Description>}
       {!favorite && (
         <StyledStarWrapper>
           <StyledStar

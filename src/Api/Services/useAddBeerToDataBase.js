@@ -1,30 +1,28 @@
 import { useState } from 'react';
-import axios from 'axios';
-import { URL_To_Connect_With_Server } from 'Constants/constants';
-import { useAuthContext } from 'Context/authProvider';
+import { useAxios } from 'Api/axios';
 
 export const useAddBeerToDataBase = () => {
-  const { activeTokenUser } = useAuthContext();
+  const { instance } = useAxios();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [message, setMessage] = useState('');
 
   const addBeer = async (data, callback) => {
     try {
       setLoading(true);
-      const response = await axios.post(`${URL_To_Connect_With_Server}/addBeer`, data, {
-        headers: {
-          ['authorization']: `Bearer ${activeTokenUser}`
-        }
-      });
-      if (response) {
+      const response = await instance.post('/addBeer', data);
+      if (response.status === 200) {
+        setMessage('Beer is added to favorite');
         callback();
       }
     } catch (error) {
+      setMessage('Try again !!');
+
       setError(true);
     }
     setLoading(false);
   };
 
-  return { addBeer, loading, error };
+  return { addBeer, loading, error, message };
 };

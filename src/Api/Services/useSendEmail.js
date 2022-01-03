@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import axios from 'axios';
-import { URL_To_Connect_With_Server } from 'Constants/constants';
+import { useAxios } from 'Api/axios';
+import { getNameBeersAndIndexToSend } from 'Utils/beersPushToArray';
 
 export const useSendEmail = (beers, email) => {
+  const { post } = useAxios();
   const [message, setMessage] = useState('');
   const [loadingSendEmail, setLoadingSendEmail] = useState(false);
   const [emailError, setEmailError] = useState(false);
@@ -15,25 +16,21 @@ export const useSendEmail = (beers, email) => {
     setMessage('');
     try {
       setLoadingSendEmail(true);
-      const response = await axios.post(`${URL_To_Connect_With_Server}/sendEmail`, data);
+      const response = await post('/sendEmai', data);
       if (response) {
         setEmailError(false);
         setMessage(response.data.message);
       }
     } catch (error) {
       setEmailError(true);
-      setMessage(error.response.data.message);
+      setMessage('Email is not sent');
     }
     setLoadingSendEmail(false);
   };
 
   const handleSubmitEmail = (e) => {
     e.preventDefault();
-    const beerToSend = [];
-
-    beers.map((beer, index) => {
-      beerToSend.push({ number: index + 1, name: beer.name });
-    });
+    const beerToSend = getNameBeersAndIndexToSend(beers);
 
     if (beerToSend) {
       sendEmail(beerToSend, email);

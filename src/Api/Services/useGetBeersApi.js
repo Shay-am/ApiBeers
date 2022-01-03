@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+
 import { API_BEERS_URL } from 'Constants/constants';
+import { useAxios } from 'Api/axios';
 
 export const useGetBeersApi = () => {
+  const { instance } = useAxios(API_BEERS_URL);
   const [beers, setBeers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -10,7 +12,7 @@ export const useGetBeersApi = () => {
   const getBeers = async () => {
     setLoading(true);
     try {
-      const data = await axios.get(API_BEERS_URL);
+      const data = await instance.get('beers');
       setBeers(data?.data);
     } catch (error) {
       setError(true);

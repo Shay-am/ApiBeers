@@ -1,20 +1,23 @@
 import axios from 'axios';
+import { URL_To_Connect_With_Server } from 'Constants/constants';
+import { useAuthContext } from 'Context/authProvider';
 
-const setAuthToken = (token) => {
-  if (token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  } else {
-    delete axios.defaults.headers.common.Authorization;
-  }
+export const useAxios = (url) => {
+  const { activeTokenUser } = useAuthContext();
+
+  const instance = axios.create();
+  instance.interceptors.request.use(
+    function (config) {
+      config.headers.Authorization = `Bearer ${activeTokenUser}`;
+      config.baseURL = url ? url : URL_To_Connect_With_Server;
+
+      return config;
+    },
+    function (error) {
+      console.log(error);
+      return Promise.reject(error);
+    }
+  );
+
+  return { instance };
 };
-
-const mainAxios = axios.create({
-  baseURL: 'http://localhost:3000/summary'
-});
-
-const profileAxios = axios.create({
-  baseURL: 'http://localhost:6000/profile'
-});
-
-export default setAuthToken;
-export { mainAxios, profileAxios };
