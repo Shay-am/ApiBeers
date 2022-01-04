@@ -1,8 +1,7 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { StyledDescription } from './Login.styled';
-import { Button, Description, Registration, Form, InputWithLabel } from 'Components';
+import { Button, Description, Registration, Form, InputWithLabel, LoaderSpinner } from 'Components';
 import { useLogin } from 'Api/Auth/useLogin';
 
 export const Login = () => {
@@ -30,7 +29,7 @@ export const Login = () => {
             autoComplete="current-password"
           />
         </div>
-        {loading && <Description>Loading...</Description>}
+        {loading && <LoaderSpinner />}
         {error && (
           <Description error={error}>
             The username or password is incorrect. Try again!!!

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Description } from 'Components';
@@ -9,13 +10,11 @@ import {
   StyledDescription
 } from './SendEmail.styled';
 import { useSendEmail } from 'Api/Services/useSendEmail';
-// import { useValidate } from 'Hooks/useValidate';
 
 export const SendEmail = ({ beers }) => {
-  // const {values, handleSubmit, errors, handleChange} = useValidate()
-
-  const [email, setEmail] = useState('');
-  const { handleSubmitEmail, message, loadingSendEmail, emailError } = useSendEmail(beers, email);
+  console.log(beers);
+  const { handleSubmitEmail, message, loading, emailError, handleChange, errors } =
+    useSendEmail(beers);
   return (
     <StyledFormWrapper>
       <StyledDescription>
@@ -24,11 +23,13 @@ export const SendEmail = ({ beers }) => {
             {message}
           </Description>
         )}
+        {errors && (
+          <Description size="1rem" error={errors.email}>
+            {errors.email}
+          </Description>
+        )}
       </StyledDescription>
-      <StyledForm
-        loading={loadingSendEmail ? 1 : 0}
-        onSubmit={handleSubmitEmail}
-        aria-label="Send your favorites beers">
+      <StyledForm loading={loading} onSubmit={(e) => handleSubmitEmail(e)}>
         Send favorites beers
         <label htmlFor="send-email" />
         <StyledInput
@@ -36,8 +37,7 @@ export const SendEmail = ({ beers }) => {
           id="send-email"
           name="email"
           placeholder="write here your email"
-          value={email || ' '}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleChange}
         />
         <StyledButton type="submit">send</StyledButton>
       </StyledForm>

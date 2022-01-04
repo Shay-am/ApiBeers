@@ -17,3 +17,9 @@ export const Wrapper = styled.div`
     width: 75%;
   }
 `;
+
+export const LoaderWrapper = styled.div`
+  width: 100vw;
+  height: 10vh;
+  text-align: center;
+`;

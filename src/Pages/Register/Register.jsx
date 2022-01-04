@@ -9,6 +9,7 @@ import {
 import { useSignUp } from 'Api/Auth/useSignUp';
 import { useValidate } from 'Hooks/useValidate';
 import { validateEmailRules } from 'Utils/validateEmailRules';
+import { LoaderSpinner } from 'Components';
 
 export const Register = () => {
   const { signUp, resetMessage, message, loading } = useSignUp();
@@ -70,10 +71,10 @@ export const Register = () => {
             autoComplete="on"
           />
           <Description error={errors.password} size="1rem">
-            Password must be at least 7 characters
+            {errors.password}
           </Description>
         </StyledCointanerInput>
-        {loading && <Description>Loading...</Description>}
+        {loading && <LoaderSpinner />}
         <Button type="submit">Zarejestruj się</Button>
         <StyledDescriptionCointaner>
           <Description>Masz już konto? </Description>

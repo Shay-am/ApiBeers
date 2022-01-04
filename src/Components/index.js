@@ -10,6 +10,7 @@ import { Nav } from './Organisms/Nav/Nav';
 import { CardCointaner } from './Templates/CardCointainer/CardCointaner';
 import { Registration } from './Templates/Registration/Registration';
 import { SendEmail } from './Organisms/SendEmail/SendEmail';
+import { LoaderSpinner } from './Molecules/Loader/Loader';
 
 export {
   Button,
@@ -24,5 +25,6 @@ export {
   CardCointaner,
   Registration,
   Nav,
-  SendEmail
+  SendEmail,
+  LoaderSpinner
 };

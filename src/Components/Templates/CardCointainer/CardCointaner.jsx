@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Wrapper } from './CardCointaner..styled';
-import { Card } from '../../../Components';
+import { Wrapper, LoaderWrapper } from './CardCointaner..styled';
+import { Card, LoaderSpinner } from 'Components';
 
 export const CardCointaner = ({ beers, loading }) => {
   return (
     <Wrapper>
-      {loading && <div>loading...</div>}
+      {loading && (
+        <LoaderWrapper>
+          <LoaderSpinner />
+        </LoaderWrapper>
+      )}
 
       {!loading && (
         <>
