@@ -12,7 +12,6 @@ import {
 import { useSendEmail } from 'Api/Services/useSendEmail';
 
 export const SendEmail = ({ beers }) => {
-  console.log(beers);
   const { handleSubmitEmail, message, loading, emailError, handleChange, errors } =
     useSendEmail(beers);
   return (
